@@ -1,0 +1,76 @@
+﻿<phone:PhoneApplicationPage
+    x:Class="JeedomSL.PageSettings"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:setting="clr-namespace:JeedomSL.Settings"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    mc:Ignorable="d"
+    shell:SystemTray.IsVisible="True"
+    Loaded="PhoneApplicationPage_Loaded">
+
+    <phone:PhoneApplicationPage.Resources>
+        <setting:AppSettings x:Key="appSettings"></setting:AppSettings>
+    </phone:PhoneApplicationPage.Resources>
+    <!--LayoutRoot is the root grid where all page content is placed-->
+
+
+    <Grid x:Name="LayoutRoot" Background="Transparent">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!--TitlePanel contains the name of the application and page title-->
+        <StackPanel Grid.Row="0" Margin="12,17,0,28" Orientation="Horizontal" VerticalAlignment="Center">
+            <Image Source="/Assets/param/Settings64.png" Height="50" />
+            <TextBlock Text="PARAMETRES" Style="{StaticResource PhoneTextTitle2Style}"/>
+        </StackPanel>
+
+        <!--ContentPanel - place additional content here-->
+        <StackPanel Grid.Row="1" Margin="30,0" >
+            <Button Margin="0,10,0,0" HorizontalAlignment="Left" VerticalAlignment="Bottom" Name="scanProperties" Content="Scan Parameters" Click="ScanProperties" />
+            <TextBlock Margin="0,10,0,0" HorizontalAlignment="Left" VerticalAlignment="Bottom" Name="textBlock1" Text="IP Jeedom" Width="169" />
+            <toolkit:PhoneTextBox Height="78" HorizontalAlignment="Left"  Name="textBoxUsername" 
+        Text="{Binding Path=IPSetting, Mode=OneWay, Source={StaticResource appSettings}}" VerticalAlignment="Top" Width="420" Hint="URL de Jeedom de la forme http://ip ou https://ip"  />
+
+            <TextBlock Margin="0,10,0,0" HorizontalAlignment="Left"  VerticalAlignment="Bottom" Name="textBlock2" Text="API Key" Width="169" />
+            <toolkit:PhoneTextBox Height="78" HorizontalAlignment="Left"  Name="passwordBoxPassword" 
+        Text="{Binding Path=ApiKeySetting, Mode=OneWay, Source={StaticResource appSettings}}" VerticalAlignment="Top" Width="420" Hint="Clef API de Jeedom de configuration générale"/>
+
+            <TextBlock Margin="0,10,0,0" HorizontalAlignment="Left" VerticalAlignment="Bottom" Name="textBlock3" Text="Uri Push Notification"  Width="250" />
+            <toolkit:PhoneTextBox Height="78" HorizontalAlignment="Left"  Name="uriPushNotification" 
+        Text="{Binding Path=UriPushNotificationKeySetting, Mode=OneWay, Source={StaticResource appSettings}}" VerticalAlignment="Top" Width="420" Hint="Uri Push Notification" Margin="0"/>
+
+            <TextBlock Margin="0,10,0,0" HorizontalAlignment="Left" VerticalAlignment="Bottom" Name="textBlock4" Text="Geoloc ID"  Width="250" Visibility="Collapsed"/>
+            <!--toolkit:PhoneTextBox Height="78" HorizontalAlignment="Left"  Name="geolocID" 
+        Text="{Binding Path=GeolocSetting, Mode=OneWay, Source={StaticResource appSettings}}" VerticalAlignment="Top" Width="420" Hint="ID du dispositif dynamique" Margin="0"/-->
+            <toolkit:ListPicker Visibility="Collapsed" ScrollViewer.VerticalScrollBarVisibility="Auto"   Name="geolocID" SelectionChanged="geolocID_SelectionChanged" FontFamily="Portable User Interface" Background="{StaticResource PhoneTextBoxEditBackgroundBrush}" >
+                <toolkit:ListPicker.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock FontSize="30" Foreground="Black" Text="{Binding Name}" Tag="{Binding}" Visibility="Visible"></TextBlock>
+                    </DataTemplate>
+                </toolkit:ListPicker.ItemTemplate>
+                <toolkit:ListPicker.FullModeItemTemplate>
+                    <DataTemplate>
+                        <TextBlock FontSize="30" Foreground="Black" Text="{Binding Name}" Tag="{Binding}" FontFamily="Portable User Interface" ></TextBlock>
+                    </DataTemplate>
+                </toolkit:ListPicker.FullModeItemTemplate>
+                </toolkit:ListPicker>
+        </StackPanel>
+
+    </Grid>
+    <phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
+            <shell:ApplicationBarIconButton IconUri="/Images/appbar.save.png" Text="Save" Click="doneButton_Click"/>
+            <shell:ApplicationBarIconButton IconUri="/Images/appbar.cancel.png" Text="Cancel" Click="cancelButton_Click"/>
+        </shell:ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>
+</phone:PhoneApplicationPage>
