@@ -36,6 +36,7 @@
             <TextBlock Height="30" HorizontalAlignment="Left" Margin="12,258,0,0" Name="textBlock5" Text="• Coding4Fun Toolkit (licence MS-PL)" VerticalAlignment="Top" Width="438" />
             <TextBlock Height="30" HorizontalAlignment="Left" Margin="12,288,0,0" Name="textBlock6" Text="• Silverlight Toolkit (licence MS-PL)" VerticalAlignment="Top" Width="438" />
             <TextBlock Height="30" HorizontalAlignment="Left" Margin="12,318,0,0" Name="textBlock7" Text="• Newtonsoft Json (licence MS-PL)" VerticalAlignment="Top" Width="438" />
+            <TextBlock Height="30" HorizontalAlignment="Left" Margin="12,348,0,0" Name="textBlock8" Text="• ZXing.Net (licence MS-PL)" VerticalAlignment="Top" Width="438" />
         </Grid>
         <Image Grid.Row="1" Height="200" Source="/Assets/SquareTile150x150.png" Margin="6,365,-6,108" />
     </Grid>
